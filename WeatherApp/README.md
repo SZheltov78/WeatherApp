@@ -17,4 +17,4 @@ ASP.NET MVC (.NET Framework 4.8)
 Bootstrap
 
 Скриншот:
-<img src="screenshot.jpg" width="600" alt="Скриншот приложения">
+<img src="https://github.com/SZheltov78/WeatherApp/blob/master/screenshot.jpg" width="600" alt="Скриншот приложения">
