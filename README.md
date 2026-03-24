@@ -11,7 +11,7 @@ http://api.weatherapi.com/v1/current...<br>
 http://api.weatherapi.com/v1/forecast...<br>
 Реализация графической составляющей на усмотрения кандидата, оформление должно быть понятным, не запутанным, но соответствовать тз.<br>
 <br>
-Реализация:<br>
+Реализация (3.5 часа):<br>
 ASP.NET MVC (.NET Framework 4.8)<br>
 Bootstrap<br>
 <br>
