@@ -1,0 +1,151 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/* Схематичный дизайн - все блоки с пунктирной рамкой */
+.dashed-border {
+    border: 2px dashed #333;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.weather-block {
+    border: 2px dashed #007bff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.hourly-item {
+    border: 1px dashed #6c757d;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.forecast-day {
+    border: 1px dashed #28a745;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.error-box {
+    border: 2px dashed #dc3545;
+    background-color: #f8d7da;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.loader {
+    border: 3px dashed #f3f3f3;
+    border-top: 3px dashed #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2, h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-left: 4px solid #333;
+    padding-left: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hourly-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.hourly-item {
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.forecast-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.forecast-day {
+    flex: 1;
+    min-width: 100px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+.temp-large {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.weather-icon {
+    font-size: 48px;
+}
+
+.text-muted {
+    color: #6c757d;
+}
