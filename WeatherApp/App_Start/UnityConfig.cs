@@ -10,7 +10,8 @@ namespace WeatherApp
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-            container.RegisterType<IWeatherService, WeatherService>();
+            container.RegisterType<IWeatherApiService, WeatherApiService>();
+            container.RegisterType<IWeatherViewModelService, WeatherViewModelService>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

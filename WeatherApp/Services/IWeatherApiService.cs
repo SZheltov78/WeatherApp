@@ -3,7 +3,7 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Services
 {
-    public interface IWeatherService
+    public interface IWeatherApiService
     {
         Task<CurrentWeatherApiResponse> GetCurrentWeatherAsync();
         Task<ForecastWeatherApiResponse> GetForecastWeatherAsync();

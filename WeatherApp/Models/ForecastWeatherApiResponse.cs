@@ -1,41 +1,74 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WeatherApp.Models.Common;
 
 namespace WeatherApp.Models
 {
     public class ForecastWeatherApiResponse
     {
-        public Location Location { get; set; }
-        public Current Current { get; set; }
-        public Forecast Forecast { get; set; }
-    }    
-
-    public class Forecast
-    {
-        public List<ForecastDay> Forecastday { get; set; }
+        [JsonProperty("forecast")]
+        public ForecastWeatherForecast Forecast { get; set; }
     }
 
-    public class ForecastDay
+    public class ForecastWeatherForecast
     {
+        [JsonProperty("forecastday")]
+        public List<ForecastWeatherDay> Forecastday { get; set; }
+    }
+
+    public class ForecastWeatherDay
+    {
+        [JsonProperty("date")]
         public string Date { get; set; }
-        public Day Day { get; set; }
-        public List<Hour> Hour { get; set; }
+
+        [JsonProperty("day")]
+        public ForecastWeatherDayData Day { get; set; }
+
+        [JsonProperty("hour")]
+        public List<ForecastWeatherHour> Hour { get; set; }
     }
 
-    public class Day
+    public class ForecastWeatherDayData
     {
+        [JsonProperty("maxtemp_c")]
         public double MaxtempC { get; set; }
+
+        [JsonProperty("maxtemp_f")]
+        public double MaxtempF { get; set; }
+
+        [JsonProperty("mintemp_c")]
         public double MintempC { get; set; }
-        public Condition Condition { get; set; }
+
+        [JsonProperty("mintemp_f")]
+        public double MintempF { get; set; }
+
+        [JsonProperty("condition")]
+        public ForecastWeatherCondition Condition { get; set; }
+
+        [JsonProperty("daily_chance_of_rain")]
+        public int DailyChanceOfRain { get; set; }
     }
 
-    public class Hour
+    public class ForecastWeatherHour
     {
+        [JsonProperty("time")]
         public string Time { get; set; }
+
+        [JsonProperty("temp_c")]
         public double TempC { get; set; }
-        public Condition Condition { get; set; }
+
+        [JsonProperty("temp_f")]
+        public double TempF { get; set; }
+
+        [JsonProperty("condition")]
+        public ForecastWeatherCondition Condition { get; set; }
+    }
+
+    public class ForecastWeatherCondition
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
     }
 }

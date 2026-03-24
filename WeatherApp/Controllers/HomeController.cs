@@ -10,19 +10,18 @@ namespace WeatherApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IWeatherService _weatherService;
+        private readonly IWeatherViewModelService _weatherVMService;
         
-        public HomeController(IWeatherService weatherService)
+        public HomeController(IWeatherViewModelService weatherVMService)
         {
-            _weatherService = weatherService;
+            _weatherVMService = weatherVMService;
         }
 
         public async Task<ActionResult> Index()
         {
             try
             {
-                var currentWeather = await _weatherService.GetCurrentWeatherAsync();
-                var forecastWeather = await _weatherService.GetForecastWeatherAsync();
+                var model = await _weatherVMService.GetWeatherViewModelAsync();               
 
                 // TODO: передать в View
                 return View();
