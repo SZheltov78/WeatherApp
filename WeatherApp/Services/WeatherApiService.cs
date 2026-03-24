@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using WeatherApp.Models;
-using WeatherApp.Models.Common;
+
 
 namespace WeatherApp.Services
 {
@@ -45,11 +45,7 @@ namespace WeatherApp.Services
             try
             {
                 string url = $"http://api.weatherapi.com/v1/current.json?key={ApiKey}&q={MoscowLatLon}";
-                string json = await DownloadStringWithDecompressionAsync(url);
-
-                // Отладка
-                System.Diagnostics.Debug.WriteLine("=== Current Weather Response ===");
-                System.Diagnostics.Debug.WriteLine(json?.Substring(0, Math.Min(300, json?.Length ?? 0)));
+                string json = await DownloadStringWithDecompressionAsync(url);                
 
                 return JsonConvert.DeserializeObject<CurrentWeatherApiResponse>(json);
             }
@@ -106,7 +102,7 @@ namespace WeatherApp.Services
 
         public void Dispose()
         {
-            // Ничего не нужно, так как HttpWebRequest не требует явного освобождения
+            //
         }
     }
 }

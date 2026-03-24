@@ -1,33 +1,94 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model WeatherApp.Models.ViewModels.WeatherViewModel
+@{
+    ViewBag.Title = "Погода";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+<div class="container">
+    <div class="weather-block">
+        <button id="refreshBtn" class="btn btn-outline-primary">🔄 Обновить</button>
     </div>
-</main>
+
+    <div class="weather-block">
+
+        <h2>Текущая погода</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="temp-large">@Model.CurrentWeather.TemperatureC°C</div>
+                <div class="text-muted">Ощущается как @Model.CurrentWeather.FeelsLikeC°C</div>
+
+                <div class="mt-3">
+                    <img src="@Model.CurrentWeather.ConditionIcon" alt="@Model.CurrentWeather.ConditionText" class="weather-icon" />
+                    <span class="h4">@Model.CurrentWeather.ConditionText</span>
+                </div>
+
+                <div class="mt-3">
+                    <p><strong>Влажность:</strong> @Model.CurrentWeather.Humidity%</p>
+                    <p><strong>Ветер:</strong> @Model.CurrentWeather.WindKph км/ч, @Model.CurrentWeather.WindDir</p>
+                    <p><strong>Давление:</strong> @Model.CurrentWeather.PressureMb мб</p>
+                    <p><strong>УФ-индекс:</strong> @Model.CurrentWeather.Uv</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-end">
+                <p><strong>@Model.Location.Name, @Model.Location.Country</strong></p>
+                <p>@Model.Location.LocalTime</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="weather-block">
+        <h3>Почасовой прогноз</h3>
+
+        <div class="hourly-scroll">
+            @foreach (var hour in Model.HourlyForecast)
+            {
+                <div class="hourly-item">
+                    <div class="fw-bold">@hour.TimeDisplay</div>
+                    <img src="@hour.ConditionIcon" alt="@hour.ConditionText" style="width: 40px;" />
+                    <div>@hour.TemperatureC°C</div>
+                    <div class="small text-muted">@hour.ConditionText</div>
+                </div>
+            }
+        </div>
+
+        @if (!Model.HourlyForecast.Any())
+        {
+            <div class="text-center text-muted py-3">Нет данных по часам</div>
+        }
+    </div>
+
+    <div class="weather-block">
+        <h3>Прогноз на 3 дня</h3>
+
+        <div class="forecast-row">
+            @foreach (var day in Model.DailyForecast)
+            {
+                <div class="forecast-day">
+                    <div class="fw-bold">@day.DayOfWeek</div>
+                    <div class="small text-muted">@day.Date.ToString("dd.MM")</div>
+                    <img src="@day.ConditionIcon" alt="@day.ConditionText" style="width: 50px;" />
+                    <div class="mt-2">@day.MaxTempC° / @day.MinTempC°C</div>
+                    <div class="small text-muted">@day.ConditionText</div>
+                    <div class="small">Дождь: @day.ChanceOfRain%</div>
+                </div>
+            }
+        </div>
+
+        @if (!Model.DailyForecast.Any())
+        {
+            <div class="text-center text-muted py-3">Нет данных на 3 дня</div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        document.getElementById('refreshBtn').addEventListener('click', function () {
+            var btn = this;
+            btn.disabled = true;
+            btn.textContent = '⏳ Обновление...';
+            location.reload();
+        });
+    </script>
+}

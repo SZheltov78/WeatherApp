@@ -21,13 +21,12 @@ namespace WeatherApp.Controllers
         {
             try
             {
-                var model = await _weatherVMService.GetWeatherViewModelAsync();               
-
-                // TODO: передать в View
-                return View();
+                var model = await _weatherVMService.GetWeatherViewModelAsync();                
+                return View(model);
             }
-            catch
+            catch(Exception ex)
             {
+                ViewBag.Error = ex.Message;
                 return View("Error");
             }
         }

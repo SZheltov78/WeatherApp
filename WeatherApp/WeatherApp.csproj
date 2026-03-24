@@ -137,9 +137,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Common\Condition.cs" />
-    <Compile Include="Models\Common\Current.cs" />
-    <Compile Include="Models\Common\Location.cs" />
     <Compile Include="Models\CurrentWeatherApiResponse.cs" />
     <Compile Include="Models\ForecastWeatherApiResponse.cs" />
     <Compile Include="Models\WeatherViewModel.cs" />

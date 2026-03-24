@@ -20,7 +20,9 @@ namespace WeatherApp.Services
             var currentResponse = await _weatherApiService.GetCurrentWeatherAsync();
             var forecastResponse = await _weatherApiService.GetForecastWeatherAsync();
 
-            return MapToViewModel(currentResponse, forecastResponse);
+            var result = MapToViewModel(currentResponse, forecastResponse);
+
+            return result;
         }
 
         private WeatherViewModel MapToViewModel(
